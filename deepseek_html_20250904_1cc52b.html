@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerpen Metropolis - Channel YouTube</title>
+    <style>
+        /* Style dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to right, #ff0000, #cc0000);
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Navigasi */
+        nav {
+            background-color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 5px 15px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #ff9999;
+        }
+        
+        /* Konten utama */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .video-list {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .video-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        .video-info {
+            padding: 20px;
+        }
+        
+        .video-info h2 {
+            color: #cc0000;
+            margin-bottom: 10px;
+        }
+        
+        .video-info p {
+            margin-bottom: 15px;
+        }
+        
+        .watch-btn {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        .watch-btn:hover {
+            background: #cc0000;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .sidebar-widget {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .sidebar-widget h3 {
+            color: #cc0000;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .channel-info {
+            text-align: center;
+        }
+        
+        .channel-info img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 3px solid #ff0000;
+        }
+        
+        .subscribe-btn {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        
+        .subscribe-btn:hover {
+            background: #cc0000;
+        }
+        
+        .popular-videos ul {
+            list-style: none;
+        }
+        
+        .popular-videos li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .popular-videos a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 5px;
+        }
+        
+        .popular-videos a:hover {
+            color: #ff0000;
+            background-color: #f9f9f9;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            color: #333;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ff0000;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #333;
+            color: white;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        footer .social-links {
+            margin-bottom: 15px;
+        }
+        
+        footer .social-links a {
+            color: white;
+            margin: 0 10px;
+        }
+        
+        /* Responsivitas */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Cerpen Metropolis</h1>
+        <p>Selamat datang di blog resmi channel YouTube Cerpen Metropolis! Temukan semua video terbaru dan terbaik di sini.</p>
+    </header>
+    
+    <!-- Navigasi -->
+    <nav>
+        <ul>
+            <li><a href="#">Beranda</a></li>
+            <li><a href="#">Video</a></li>
+            <li><a href="#">Tentang</a></li>
+            <li><a href="#">Kontak</a></li>
+            <li><a href="https://www.youtube.com/@CepenMetropolis" target="_blank">Subscribe</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Konten Utama -->
+    <div class="main-content">
+        <!-- Daftar Video -->
+        <div class="video-list">
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- VIDEO 1 - ID Diperbaiki -->
+                    <iframe src="https://www.youtube.com/embed/KtmwLIQ79Bo" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Saat Perbedaan Usia Bukan Lagi Penghalang | Kisah Abdul & Mak Ningsih Part 1</h2>
+                    <p>Di balik kesederhanaan warungnya, Mak Ningsih (46 tahun) menyimpan sebuah rahasia besar. Sore itu, di antara gerimis yang turun, seorang remaja bernama Abdul (19 tahun) hadir membawa gairah yang lama terpendam. Apa yang sebenarnya terjadi saat perbedaan usia puluhan tahun melebur menjadi satu?</p>
+                    <a href="https://www.youtube.com/watch?v=KtmwLIQ79Bo" target="_blank" class="watch-btn">Tonton di YouTube</a>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- VIDEO 2 -->
+                    <iframe src="https://www.youtube.com/embed/IVLUpaYN_KE" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Kisah Nyata: Abdul Kembali Beraksi, Wanita Ini Jadi Sasarannya | Part 2</h2>
+                    <p>Sepertinya Abdul akan mendapatkan pengalaman baru dengan Bu Azizah, atau bahkan mungkin dengan ibunya, bisa jadi kan? Jadi tunggu apa lagi, yang belum subscribe lekas subscribe supaya tidak ketinggalan kelanjutannya. Sampai jumpa lagi, terima kasih.</p>
+                    <a href="https://www.youtube.com/watch?v=IVLUpaYN_KE" target="_blank" class="watch-btn">Tonton di YouTube</a>
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <!-- VIDEO 3 -->
+                    <iframe src="https://www.youtube.com/embed/U8Xv_iBGJmU" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h2>Kisah Nyata: Siasat Cerdas Bu Azizah Membuat Abdul Terdiam | Part 3</h2>
+                    <p>Abdul membantu teman-temannya mempersiapkan pesta barbeque di halaman belakang, setelah sebelumnya, dia membantu Bu Azizah membawa tas ke dalam kamar yang dipersiapkan khusus untuknya.</p>
+                    <a href="https://www.youtube.com/watch?v=U8Xv_iBGJmU" target="_blank" class="watch-btn">Tonton di YouTube</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-widget channel-info">
+                <!-- Ganti dengan logo channel Anda -->
+                <img src="https://via.placeholder.com/120" alt="Logo Channel Cerpen Metropolis">
+                <h3>Cerpen Metropolis</h3>
+                <p>Channel YouTube yang berfokus pada konten cerita dan musik terbaik untuk dinikmati semua kalangan.</p>
+                <a href="https://www.youtube.com/@CepenMetropolis" target="_blank" class="subscribe-btn">Subscribe Channel</a>
+                
+                <div class="social-links">
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Facebook">👥</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="TikTok">🎵</a>
+                </div>
+            </div>
+            
+            <div class="sidebar-widget popular-videos">
+                <h3>Video Populer</h3>
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=Hte4R7XCLyo" target="_blank">Kisah Nyata: Dengan Taktik Sederhana Ini, Abdul Rebut Perhatian Bu Azizah | Part 4</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=05-wHn9MqnM" target="_blank">Kisah Nyata: Bu Azizah Tak Membiarkannya Pulang Begitu Saja | Part 5</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=Epnx0vQE-2U" target="_blank">Kisah Nyata: Ayo Masuk Sayang....?, Suami Ibu Sudah Tidur Kok | Part 6</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=PCrWAEAs_6U" target="_blank">Kisah Nyata: Kerinduan Bu Atikah Pada Ano Semakin.....? | Part 7</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=usHfnF-ba2M" target="_blank">Kisah Nyata: Tamu Tak Diundang Datang Mengajak....? | Part 8</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Tentang Channel</h3>
+                <p>Channel Cerpen Metropolis hadir dengan berbagai konten cerita dan musik yang menarik. Jangan lupa subscribe untuk mendapatkan notifikasi video terbaru!</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Facebook</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">TikTok</a>
+        </div>
+        <p>&copy; 2023 Cerpen Metropolis YouTube Channel. All rights reserved.</p>
+    </footer>
+</body>
+</html>
